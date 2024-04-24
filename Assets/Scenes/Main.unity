@@ -320,9 +320,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grid: {fileID: 76456463}
-  grid_prefab: {fileID: 2261243837095595019, guid: 1cffe4d39117a0d4fa6769261989bae7, type: 3}
-  grid_parent: {fileID: 76456462}
+  grid_card_prefab: {fileID: 917591714896439013, guid: 1cffe4d39117a0d4fa6769261989bae7, type: 3}
+  grid_card_parent: {fileID: 76456462}
   cam_handler: {fileID: 519420033}
+  all_card_pictures:
+  - {fileID: 21300000, guid: 462f63183a1a38846856f557a981d554, type: 3}
+  - {fileID: 21300000, guid: 2908210067901b24c933ee7b335e23ce, type: 3}
+  - {fileID: 21300000, guid: c7d6d0e4112b7864ca74600107ec2246, type: 3}
+  - {fileID: 21300000, guid: 52404d6940972d743a8ba4e064e8da38, type: 3}
+  - {fileID: 21300000, guid: db37d4e1a494ce7459f25e4751a5a796, type: 3}
+  - {fileID: 21300000, guid: fced77350d3f7ca489b0112209315f01, type: 3}
+  - {fileID: 21300000, guid: 7a13b97098eb3334c81bf91d70f121eb, type: 3}
+  - {fileID: 21300000, guid: 6e673ffa90ecef14ebaed234ab2dbb12, type: 3}
+  - {fileID: 21300000, guid: aa15d623ca5d398498b3a285638a72a3, type: 3}
 --- !u!1 &76456461
 GameObject:
   m_ObjectHideFlags: 0
