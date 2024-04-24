@@ -3918,6 +3918,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2086030849}
+  - component: {fileID: 2086030851}
   - component: {fileID: 2086030850}
   m_Layer: 5
   m_Name: Screen_Game
@@ -3965,6 +3966,22 @@ MonoBehaviour:
   txt_matches: {fileID: 839126548}
   txt_turns: {fileID: 929272528}
   btn_home: {fileID: 1675403212}
+--- !u!111 &2086030851
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2086030848}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 0}
+  m_Animations:
+  - {fileID: 7400000, guid: 3b5455e7f7f6f2e4785d6c2ce51bc1b4, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &2105052434
 GameObject:
   m_ObjectHideFlags: 0
