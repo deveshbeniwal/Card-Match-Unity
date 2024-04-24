@@ -43,6 +43,7 @@ public class Card : MonoBehaviour
         box_collider.enabled = false;
 
         anim.Play("Flip");
+        SoundManager.instance.PlaySound(SOUND_TYPE.CARD_FLIP);
     }
     public void Flip_Card_Hide()
     {
@@ -50,6 +51,7 @@ public class Card : MonoBehaviour
 
         isShowingCard = false;
         anim.Play("Flip");
+        SoundManager.instance.PlaySound(SOUND_TYPE.CARD_FLIP);
     }
     public void Destroy_Card()
     {

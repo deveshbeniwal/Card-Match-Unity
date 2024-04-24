@@ -49,3 +49,10 @@ public enum GAME_MODES
     MEDIUM,
     HARD
 }
+public enum SOUND_TYPE
+{
+    CARD_FLIP,
+    CARD_MATCH,
+    CARD_MISMATCH,
+    GAMEOVER
+}

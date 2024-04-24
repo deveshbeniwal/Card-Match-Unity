@@ -126,12 +126,16 @@ public class GameManager : MonoBehaviour
 
             current_matches++;
             Event_OnMatchChanged?.Invoke(current_matches);
+
+            SoundManager.instance.PlaySound(SOUND_TYPE.CARD_MATCH);
         }
         else
         {
             //non-matching cards, flip them again
             primary_card.Flip_Card_Hide();
             _card.Flip_Card_Hide();
+
+            SoundManager.instance.PlaySound(SOUND_TYPE.CARD_MISMATCH);
         }
 
         primary_card = null;
@@ -151,6 +155,8 @@ public class GameManager : MonoBehaviour
         {
             Reset_Game();
             Event_OnGameFinished?.Invoke();
+
+            SoundManager.instance.PlaySound(SOUND_TYPE.GAMEOVER);
         });
     }
 }
