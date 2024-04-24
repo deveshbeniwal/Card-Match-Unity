@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Card : MonoBehaviour
@@ -10,60 +11,72 @@ public class Card : MonoBehaviour
     [SerializeField] Sprite spr_card_back;
 
     Sprite card_picture;
-    int card_picture_index;
 
     bool isShowingCard;
     bool isAnimProcessing;
+
+    Action flip_anim_callback;
 
     public void Initialize(Vector3 _position, Sprite _card_picture, int _card_picture_index)
     {
         transform.position = _position;
         gameObject.name = _card_picture_index.ToString();
+        card_picture = _card_picture;
 
         anim.Play("Init");
 
-        card_picture = _card_picture;
-        card_picture_index = _card_picture_index;
-
-        GameManager.instance.Event_ShowCards += Instance_Event_ShowCards;
-        GameManager.instance.Event_HideCards += Instance_Event_HideCards;
-        GameManager.instance.Event_StartGame += Instance_Event_StartGame;
+        GameManager.instance.Event_ShowCards += Flip_Card_Show;
+        GameManager.instance.Event_HideCards += Flip_Card_Hide;
     }
     private void OnDestroy()
     {
-        GameManager.instance.Event_ShowCards -= Instance_Event_ShowCards;
-        GameManager.instance.Event_HideCards -= Instance_Event_HideCards;
-        GameManager.instance.Event_StartGame -= Instance_Event_StartGame;
+        GameManager.instance.Event_ShowCards -= Flip_Card_Show;
+        GameManager.instance.Event_HideCards -= Flip_Card_Hide;
     }
 
 
-
-    private void Instance_Event_ShowCards()
+    public void Flip_Card_Show()
     {
+        isAnimProcessing = true;
+
         isShowingCard = true;
+        box_collider.enabled = false;
+
         anim.Play("Flip");
     }
-    private void Instance_Event_HideCards()
+    public void Flip_Card_Hide()
     {
+        isAnimProcessing = true;
+
         isShowingCard = false;
         anim.Play("Flip");
     }
-    private void Instance_Event_StartGame()
+    public void Destroy_Card()
     {
-        box_collider.enabled = true;
+        isAnimProcessing = true;
+        anim.Play("Destroy");
     }
 
-    private void Anim_Event_Flipcard()
+
+    private void AnimEvent_CardFlip_Completed()
+    {
+        isAnimProcessing = false;
+
+        box_collider.enabled = !isShowingCard;
+        Execute_CardFlip_Callback();
+    }
+    private void AnimEvent_CardDestroy_Completed()
+    {
+        Destroy(this.gameObject);
+    }
+    private void AnimEvent_CardFlip()
     {
         sr_card.sprite = isShowingCard ? card_picture : spr_card_back;
     }
-    private void Anim_Event_Anim_Started()
+    private void Execute_CardFlip_Callback()
     {
-        isAnimProcessing = true;
-    }
-    private void Anim_Event_Anim_Stopped()
-    {
-        isAnimProcessing = false;
+        flip_anim_callback?.Invoke();
+        flip_anim_callback = null;
     }
 
 
@@ -76,6 +89,7 @@ public class Card : MonoBehaviour
         if (isShowingCard)
             return;
 
-        Debug.Log(gameObject.name);
+        flip_anim_callback = () => { GameManager.instance.OnCard_Select(this); };
+        Flip_Card_Show();
     }
 }

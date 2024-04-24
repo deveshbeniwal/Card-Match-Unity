@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,9 +10,6 @@ public class Screen_Game : BaseScreen
     [SerializeField] TextMeshProUGUI txt_turns;
     [SerializeField] Button btn_home;
 
-    int current_matches = 0;
-    int current_turns = 0;
-
 
     private void Start()
     {
@@ -21,6 +19,10 @@ public class Screen_Game : BaseScreen
 
     public override void Show()
     {
+        GameManager.instance.Event_OnMatchChanged += Update_Matches;
+        GameManager.instance.Event_OnTurnChanged += Update_Turns;
+        GameManager.instance.Event_OnGameFinished += Instance_OnGameFinished;
+
         Update_Matches(0);
         Update_Turns(0);
 
@@ -28,22 +30,33 @@ public class Screen_Game : BaseScreen
 
         GameManager.instance.Initialize();
     }
-
-
-    private void Update_Matches(int _toadd)
+    public override void Hide()
     {
-        current_matches += _toadd;
-        txt_matches.text = string.Format("{0}", current_matches);
+        GameManager.instance.Event_OnMatchChanged -= Update_Matches;
+        GameManager.instance.Event_OnTurnChanged -= Update_Turns;
+        GameManager.instance.Event_OnGameFinished -= Instance_OnGameFinished;
+
+        base.Hide();
     }
-    private void Update_Turns(int _toadd)
+
+
+    private void Update_Matches(int _value)
     {
-        current_turns += _toadd;
-        txt_turns.text = string.Format("{0}", current_turns);
+        txt_matches.text = string.Format("{0}", _value);
+    }
+    private void Update_Turns(int _value)
+    {
+        txt_turns.text = string.Format("{0}", _value);
+    }
+    private void Instance_OnGameFinished()
+    {
+        ScreenManager.instance.Switch_Screen(SCREEN_TYPE.GAMEOVER, this.screen_type);
     }
 
 
     private void OnClick_Home()
     {
+        GameManager.instance.Reset_Game();
         ScreenManager.instance.Switch_Screen(SCREEN_TYPE.HOME, this.screen_type);
     }
 }

@@ -22,9 +22,9 @@ public class Screen_Home : BaseScreen
 
     public override void Show()
     {
-        txt_best_easy.text = string.Format("<size=40>Best Score</size>\n{0}", DataManager.Instance.Get_Highscore(GAME_MODES.EASY));
-        txt_best_medium.text = string.Format("<size=40>Best Score</size>\n{0}", DataManager.Instance.Get_Highscore(GAME_MODES.MEDIUM));
-        txt_best_hard.text = string.Format("<size=40>Best Score</size>\n{0}", DataManager.Instance.Get_Highscore(GAME_MODES.HARD));
+        txt_best_easy.text = string.Format("<size=40>Best Turns</size>\n{0}", DataManager.Instance.Get_Highscore(GAME_MODES.EASY));
+        txt_best_medium.text = string.Format("<size=40>Best Turns</size>\n{0}", DataManager.Instance.Get_Highscore(GAME_MODES.MEDIUM));
+        txt_best_hard.text = string.Format("<size=40>Best Turns</size>\n{0}", DataManager.Instance.Get_Highscore(GAME_MODES.HARD));
 
         base.Show();
     }

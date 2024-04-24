@@ -27,7 +27,7 @@ public class DataManager
 
     public int Get_Highscore(GAME_MODES _mode)
     {
-        return PlayerPrefs.GetInt(string.Format("{0}_{1}", KEY_HIGHSCORE, (int)_mode), 0);
+        return PlayerPrefs.GetInt(string.Format("{0}_{1}", KEY_HIGHSCORE, (int)_mode), 99999);
     }
     public void Set_Highscore(GAME_MODES _mode, int value)
     {
@@ -40,7 +40,8 @@ public enum SCREEN_TYPE
 {
     none,
     HOME,
-    GAME
+    GAME,
+    GAMEOVER
 }
 public enum GAME_MODES
 {

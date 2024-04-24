@@ -233,22 +233,15 @@ AnimationClip:
   m_HasGenericRootTransform: 1
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 0
-    functionName: Anim_Event_Anim_Started
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
   - time: 0.25
-    functionName: Anim_Event_Flipcard
+    functionName: AnimEvent_CardFlip
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.5
-    functionName: Anim_Event_Anim_Stopped
+    functionName: AnimEvent_CardFlip_Completed
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
